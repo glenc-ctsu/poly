@@ -33,28 +33,36 @@ public class TestAnimal {
 				animals.add(new Bird());
 			else 
 				animals.add(new Cat());
+
 		}
 	}
 	
 	@BeforeMethod
 	public void printMethodNameBefore(Method method){
-		SimpleDateFormat sdf = new SimpleDateFormat("y M d HH:mm:ss.sss");
-		System.out.println("Test Name: " + method.getName() + " -- Starts @ " + sdf.format(new Date(System.currentTimeMillis())).toString());
+		System.out.println("Test Name: " + method.getName() + " -- Starts @ " + new SimpleDateFormat("E yyyy-MM-dd HH:mm:ss.SSS").format(new Date()));
 	}
 	@AfterMethod
 	public void printMethodNameAfter(Method method){
-		SimpleDateFormat sdf = new SimpleDateFormat("y M d HH:mm:ss.sss");
-		System.out.println("Test Name: " + method.getName() + " -- Ends @ " + sdf.format(new Date(System.currentTimeMillis())).toString());		
+		System.out.println("Test Name: " + method.getName() + " -- Ends @ " + new SimpleDateFormat("E yyyy-MM-dd HH:mm:ss.SSS").format(new Date()));
 		System.out.println();
 	}
 	
 
 	@Test
-	public void makeSoundTest(){
-		for (Animal each : animals) each.makeSound();
+	public void makeSoundTest() {
+		for (Animal oneAnimal : animals) {
+			oneAnimal.makeSound();
+
+			//Wait
+/*			try {
+			    Thread.sleep(1);                 //1: it means wait 1 millisecond.
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}*/
+		}
 	}
-	
-/*	@Test
+/*	
+	@Test
 	public void testHomePageTitle() {
 	WebDriver driver = new FirefoxDriver();
 	driver.get("https://violin.ctsu.ox.ac.uk/celloTesting/");
